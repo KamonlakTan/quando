@@ -1,3 +1,43 @@
+<div data-quando-block-type="devices-set-platform" class="quando-block"
+  data-quando-id="true"
+  data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group"
+  data-quando-javascript="quando.environment.setPlatform('${platform}', (val)=>{${box}})">
+  <div class="quando-left quando-separator quando-devices"></div>
+  <div class="quando-right">
+    <div class="quando-row quando-separator quando-devices">
+      <span class="quando-info" title="This block can not be dragged into any other block.">⚠</span>
+      📺 Set Platform to
+      <select data-quando-name="platform">
+        <option value="windows">Windows</option>
+        <option value="mac">Mac</option>
+        <option value="linux">Linux</option>
+      </select>
+    </div>
+    <div data-quando-name="box" class="quando-box"></div>
+    <div class="quando-row quando-devices"></div>
+  </div>
+</div>
+
+
+<div data-quando-block-type="devices-set-app" class="quando-block" data-quando-id="true"
+data-quando-drop-valid="devices-set-platform"
+  data-quando-javascript="quando.environment.setApp('${application}', (val)=>{${box}})">
+  <div class="quando-left quando-separator quando-devices"></div>
+  <div class="quando-right">
+    <div class="quando-row quando-separator quando-devices">
+      <span class="quando-info" title="This block can only be dragged into Set Platform.">⚠</span>
+      📺 Set Application to
+      <select data-quando-name="application">
+        <option value="google_docs">Google Docs</option>
+        <option value="word">Word</option>
+      </select>
+    </div>
+    <div data-quando-name="box" class="quando-box"></div>
+    <div class="quando-row quando-devices"></div>
+  </div>
+</div>
+
+
 <div data-quando-block-type="devices-leap-when" class="quando-block"
   data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group"
   data-quando-javascript="quando.leap.handOpenClose('${hand}', '${open_close}', (val)=>{${box}})">
@@ -153,26 +193,66 @@
 
 
 <div data-quando-block-type="devices-when-key" class="quando-block" data-quando-id="true"
-  data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group"
+  data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group,display-add-button"
   data-quando-javascript="quando.key.handleKey({id:${data-quando-id}, key:'${key}', down_up:'${down_up}', special:false, ctrl:${ctrl}, alt:${alt}, shift:${shift}, callback:(val)=>{${box}}})">
   <div class="quando-left quando-devices"></div>
   <div class="quando-right">
     <div class="quando-row quando-devices">
       <span class="quando-info" title="This block can only be dragged into When Display.">⚠</span>
       ⌨️️ When
+      <span class="iconify">
+        key
+      </span>
       <span data-quando-toggle='ctrl=true'>ctrl˖</span
         ><span data-quando-toggle='alt=true'>alt˖</span
         ><span data-quando-toggle='shift=true'>shift˖</span
         ><input data-quando-name='key' type='text' maxLength="1" value='' placeholder='' data-quando-encode='normal' />
-      <span class="iconify">
-        key
-      </span>
       <select data-quando-name="down_up">
-          <option value='down'>press</option>
-          <option value='up'>release</option>
+          <option value='down'>pressed</option>
+          <option value='up'>released</option>
           <option value='either'>⇕</option>
       </select>
       <span data-quando-toggle="down_up=either">⚡</span>
+      <select data-quando-name="extras" class="quando-toggle">
+        <option value="hidden">+</option>
+        <option value="show">-</option>
+      </select>
+      <span data-quando-toggle="extras=show">
+        <br>
+        <select data-quando-name='ctrl' class='quando-toggle'>
+          <option value='false'>no Ctrl</option>
+          <option value='true'>Ctrl</option>
+        </select>
+        <select data-quando-name='alt' class='quando-toggle'>
+          <option value='false'>no Alt</option>
+          <option value='true'>Alt</option>
+        </select>
+        <select data-quando-name='shift' class='quando-toggle'>
+          <option value='false'>no Shift</option>
+          <option value='true'>Shift</option>
+        </select>
+      </span>
+    </div>
+    <div data-quando-name="box" class="quando-box"></div>
+    <div class="quando-row quando-devices"></div>
+  </div>
+</div>
+
+
+<div data-quando-block-type="devices-when-toggle" class="quando-block" data-quando-id="true"
+  data-quando-javascript="quando.key.handleKey({id:${data-quando-id}, key:'${key}', down_up:'${down_up}', special:false, ctrl:${ctrl}, alt:${alt}, shift:${shift}, callback:(val)=>{${box}}})">
+  <div class="quando-left quando-devices"></div>
+  <div class="quando-right">
+    <div class="quando-row quando-devices">
+      ⌨️ When
+      <span class="iconify">toggle</span>
+      <span class="toggle-key" data-quando-toggle='ctrl=true'>Ctrl</span>
+      <span class="toggle-key" data-quando-toggle='alt=true'>Alt</span>
+      <span class="toggle-key" data-quando-toggle='shift=true'>Shift</span>
+      <select data-quando-name="on_off" class="quando-toggle">
+        <option value='on'>ON</option>
+        <option value='off'>OFF</option>
+      </select>
       <select data-quando-name="extras" class="quando-toggle">
         <option value="hidden">+</option>
         <option value="show">-</option>
@@ -1066,6 +1146,7 @@ data-quando-javascript="quando.mouse_control.move${XY}({val:val, inverted:${inve
   </div>
 </div>
 
+
 <div data-quando-block-type="" class="quando-block" data-quando-javascript="quando.system.fullScreen($(eq$,${full}$,either$,val$,${full})$)">
   <div class="quando-left quando-devices"></div>
   <div class="quando-right">
@@ -1082,3 +1163,19 @@ data-quando-javascript="quando.mouse_control.move${XY}({val:val, inverted:${inve
   </div>
 </div>
 
+
+<div data-quando-block-type="devices-format-action" class="quando-block"
+     data-quando-javascript="quando.key.simulateShortcut({format: '${format}'})">
+  <div class="quando-left quando-devices"></div>
+  <div class="quando-right">
+    <div class="quando-row quando-devices">
+      Format 
+      <select data-quando-name="format" class="quando-format">
+        <option value="bold">Bold</option>
+        <option value="italic">Italic</option>
+        <option value="underline">Underline</option>
+        <option value="strikethrough">Strikethrough</option>
+      </select>
+    </div>
+  </div>
+</div>

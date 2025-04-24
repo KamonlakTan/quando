@@ -210,6 +210,27 @@ select.quando-toggle {
   text-align-last: center;
 }
 
+.toggle-key {
+  display: inline-block;
+  padding: 3px 6px;
+  margin: 2px;
+  border-radius: 4px;
+  background-color: #dddddd;
+  cursor: pointer;
+  user-select: none;
+  font-weight: bold;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.toggle-key.active {
+  background-color: #a5d6a7;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.toggle-key:hover {
+  background-color: #c8e6c9;
+}
+
 .quando-info {
   padding-left: 6px;
   padding-right: 6px;

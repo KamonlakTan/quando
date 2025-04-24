@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <link href="/client/client.css" rel="stylesheet" type="text/css" />
     <script type="module" src="/client/client.js"></script>
-    <script type="module" src="/client/modules/display.js"></script>
+    <script type="module" src="/client/modules/environment.js"></script>
+    <script type="module" src="/client/modules/display.js"></script>    
     <script type="module" src="/client/modules/destructor.js"></script>
     <script type="module" src="/common/text.js"></script>
     <script defer src="/client/modules/style.js"></script>
@@ -59,7 +60,11 @@
         <div id='quando_buttons'></div>
         <div id='quando_labels'></div>
         <div id='quando_text'></div>
-        <div id="cursor"></div>
+        <div id="cursor"></div><div id="formatting-buttons">
+            <button onclick="handleShortcut('bold')">Bold</button>
+            <button onclick="handleShortcut('italic')">Italic</button>
+            <button onclick="handleShortcut('underline')">Underline</button>
+        </div>
     </div>
     <!-- DO NOT DELETE THE NEXT LINE - Quando relies on it... -->
     <script id="quando_script" src="/scripts/{{ title }}.js"></script>

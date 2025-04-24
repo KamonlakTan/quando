@@ -24,45 +24,46 @@ let buttons_parent = null // this is where to drop in new rows/columns
     return div
   }
 
-  self.addButton = function({text = "", up_down = "down", weight = 100, text_colour, button_colour},fn) {
+  self.addButton = function({text = "", up_down = "down", weight = 100, text_colour, button_colour}, fn) {
     let button = document.createElement('div')
-    button.className = 'quando_button'
-    button.innerHTML = text
-    button.style.color = text_colour
-    button.style.background = button_colour   
-    button.setAttribute('id', 'button'+text)
+    button.className = 'quando_button';
+    button.innerHTML = text;
+    button.style.color = text_colour;
+    button.style.background = button_colour;
+    button.setAttribute('id', 'button'+text);
+
     function handleTouch(ev) {
-      ev.preventDefault() // Avoids double event
+      ev.preventDefault(); // Avoids double event
       switch (ev.type) {
-        case "touchstart" :
-        case "mousedown" :
-          if (up_down == "down") {
-            fn()
-          } else if (up_down == "either") {
-            fn(1)
+        case "touchstart":
+        case "mousedown":
+          if (up_down === "down") {
+            fn();
+          } else if (up_down === "either") {
+            fn(1);
           }
           break;
-        case "touchend" :
-        case "mouseup" :
-          if (up_down == "up") {
-            fn()
-          } else if (up_down == "either") {
-            fn(0)
+        case "touchend":
+        case "mouseup":
+          if (up_down === "up") {
+            fn();
+          } else if (up_down === "either") {
+            fn(0);
           }
           break;
-        // case "touchmove" :
-        // case "mousemove" :
-        //   break;
       }
     }
-    button.onmousedown = handleTouch
-    button.ontouchstart = handleTouch
-    button.onmouseup = handleTouch
-    button.ontouchend = handleTouch
-    // button.onmousemove = handleTouch
-    // button.ontouchmove = handleTouch
-    _getButtonsParent().appendChild(_getWeightedButton(weight, button))
-  }
+
+    // Attach event listeners
+    button.onmousedown = handleTouch;
+    button.ontouchstart = handleTouch;
+    button.onmouseup = handleTouch;
+    button.ontouchend = handleTouch;
+
+    // Append button to parent
+    _getButtonsParent().appendChild(_getWeightedButton(weight, button));
+}
+
 
   self.addSpacer = function({weight = 100}) {
     let spacer = document.createElement('div')
