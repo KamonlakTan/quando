@@ -110,3 +110,27 @@
         self.set(style, `#quando_${type}`, direction, `${percent}%`)
     }
 })()
+
+(function () {
+    const xSlider = document.getElementById('xSlider');
+    const ySlider = document.getElementById('ySlider');
+    const xValueDisplay = document.getElementById('xValue');
+    const yValueDisplay = document.getElementById('yValue');
+  
+    function update() {
+      const x = parseInt(xSlider.value, 10);
+      const y = parseInt(ySlider.value, 10);
+  
+      xValueDisplay.textContent = x;
+      yValueDisplay.textContent = y;
+  
+      Quando.output("x", x);
+      Quando.output("y", y);
+    }
+  
+    xSlider.addEventListener('input', update);
+    ySlider.addEventListener('input', update);
+  
+    update();
+  })();
+  

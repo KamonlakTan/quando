@@ -91,7 +91,7 @@
 </div>
 
 
-<div data-quando-block-type="style-cursor-colour" class="quando-block" data-quando-javascript="quando.style.cursor_colour($(inDisplay)$,'$(rgb$,${colour})$',${opacity})">
+<!-- <div data-quando-block-type="style-cursor-colour" class="quando-block" data-quando-javascript="quando.style.cursor_colour($(inDisplay)$,'$(rgb$,${colour})$',${opacity})">
   <div class="quando-left quando-style"></div>
   <div class="quando-right">
     <div class="quando-row quando-style">Cursor
@@ -99,6 +99,22 @@
       opacity
       <input data-quando-name="opacity" type="text" value="70" data-quando-encode="normal"/>
       %
+    </div>
+  </div>
+</div> -->
+
+
+<div data-quando-block-type="style-cursor-colour" class="quando-block" data-quando-javascript="quando.style.cursor_colour($(inDisplay)$,'$(rgb$,${colour})$',${opacity})">
+  <div class="quando-left quando-style"></div>
+  <div class="quando-right">
+    <div class="quando-row quando-style" id="opacity-block">
+      Cursor
+      <input data-quando-name="colour" type="color" value="#ffff66" />
+      <br>
+      Opacity 
+      <span id="opacity-value">50</span>%
+      <input data-quando-name="opacity" type="range" value="50" data-quando-encode="normal" min="0" max="100" value="50"
+        oninput="document.getElementById('opacity-value').innerText = this.value" id="opacity-slider" />
     </div>
   </div>
 </div>
@@ -157,6 +173,71 @@
         <option value='height'>⇕ height</option>
         <option value='width'>⇔ width</option>
       </select>
+    </div>
+  </div>
+</div>
+
+
+<div data-quando-block-type="slider-block" class="quando-block" 
+    data-quando-javascript="quando.slide.update('${x}', '${y}')">
+  <div class="quando-left quando-style"></div>
+  <div class="quando-right">
+    <div class="quando-row quando-style">
+      🎚️ Slider Bar
+      <br>
+      (Left ↔ Right)
+    </div>
+    <div data-quando-drop-slot="left-right" class="quando-box"></div>
+    <div class="quando-row quando-style">
+      (Up ↕ Down)
+    </div>
+        <div data-quando-name="box-up" data-quando-drop-slot="up-down" class="quando-box"></div>
+        <div class="quando-row quando-style"></div>
+  </div>
+</div>
+
+
+<div data-quando-block-type="slide-block-left-right" class="quando-block"
+    data-quando-drop-valid="slider-block"
+    data-quando-drop-slot="left-right"
+    data-quando-javascript="quando.slide.update('${x}', '${y}')">
+  <div class="quando-left quando-style"></div>
+  <div class="quando-right">
+    <div class="quando-row quando-style">
+      <span class='quando-info' title='Can only be dragged into Slider Bar'>⚠</span>
+      <span class="iconify">↔️</span>
+      Slider <label>(Left↔Right)</label>
+      <select data-quando-name="extras" class="quando-toggle">
+        <option value="hidden">+</option>
+        <option value="show">-</option>
+      </select>
+      <span data-quando-toggle="extras=show">
+        <br>
+        <input type="range" min="-100" max="100" value="0" data-quando-name="x" data-quando-encode="normal" />
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<div data-quando-block-type="slide-block-up-down" class="quando-block"
+    data-quando-drop-valid="slider-block"
+    data-quando-drop-slot="up-down"
+    data-quando-javascript="quando.slide.update('${x}', '${y}')">
+  <div class="quando-left quando-style"></div>
+  <div class="quando-right">
+    <div class="quando-row quando-style">
+      <span class='quando-info' title='Can only be dragged into For Slider'>⚠</span>
+      <span class="iconify">↕️</span>
+      Slider <label>(Up ↕ Down)</label>
+      <select data-quando-name="extras" class="quando-toggle">
+        <option value="hidden">+</option>
+        <option value="show">-</option>
+      </select>
+      <span data-quando-toggle="extras=show">
+        <br>
+        <input type="range" min="-100" max="100" value="0" data-quando-name="y" data-quando-encode="normal" />
+      </span>
     </div>
   </div>
 </div>

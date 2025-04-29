@@ -1,4 +1,4 @@
-<div data-quando-block-type="devices-set-platform" class="quando-block"
+<div data-quando-block-type="devices-when-platform" class="quando-block"
   data-quando-id="true"
   data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group"
   data-quando-javascript="quando.environment.setPlatform('${platform}', (val)=>{${box}})">
@@ -6,12 +6,13 @@
   <div class="quando-right">
     <div class="quando-row quando-separator quando-devices">
       <span class="quando-info" title="This block can not be dragged into any other block.">⚠</span>
-      📺 Set Platform to
+      📺 When 
       <select data-quando-name="platform">
         <option value="windows">Windows</option>
         <option value="mac">Mac</option>
         <option value="linux">Linux</option>
       </select>
+      Platform
     </div>
     <div data-quando-name="box" class="quando-box"></div>
     <div class="quando-row quando-devices"></div>
@@ -19,14 +20,14 @@
 </div>
 
 
-<div data-quando-block-type="devices-set-app" class="quando-block" data-quando-id="true"
+<div data-quando-block-type="devices-when-app" class="quando-block" data-quando-id="true"
 data-quando-drop-valid="devices-set-platform"
-  data-quando-javascript="quando.environment.setApp('${application}', (val)=>{${box}})">
+  data-quando-javascript="quando.system.whenApp('${application}', (val)=>{${box}})">
   <div class="quando-left quando-separator quando-devices"></div>
   <div class="quando-right">
     <div class="quando-row quando-separator quando-devices">
       <span class="quando-info" title="This block can only be dragged into Set Platform.">⚠</span>
-      📺 Set Application to
+      📺 When Application is
       <select data-quando-name="application">
         <option value="google_docs">Google Docs</option>
         <option value="word">Word</option>
@@ -430,7 +431,8 @@ data-quando-drop-valid="devices-set-platform"
                 <option value='11'>👉📍</option>
                 <option value='8'>Back 👈</option>
                 <option value='9'>👉 Start</option>
-                <option value='16'>🏠 Home</option>
+                <!-- Removed since it can open Xbox game bar on Windows
+                <option value='16'>🏠 Home</option> -->
             </select>
             <span class="iconify">
                 button
@@ -441,6 +443,10 @@ data-quando-drop-valid="devices-set-platform"
                 <option value='either'>⇕</option>
             </select>
             <span data-quando-toggle="down_up=either">⚡</span>
+            <select data-quando-name="extras" class="quando-toggle">
+              <option value="hidden">+</option>
+              <option value="show">-</option>
+            </select>
         </div>
         <div data-quando-name="box" class="quando-box"></div>
         <div class="quando-row quando-devices"></div>
@@ -525,143 +531,6 @@ data-quando-drop-valid="devices-set-platform"
         <div data-quando-name="box" class="quando-box"></div>
         <div class="quando-row quando-devices"></div>
     </div>
-</div>
-
-
-<div data-quando-block-type="devices-ubit-button" class="quando-block"
-  data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group"
-  data-quando-javascript="quando.ubit.handleButtonPin('${button_pin}','${down_up}',($(eq$,${down_up}$,change$,val)$)=>{${box}})">
-    <div class="quando-left quando-devices"></div>
-    <div class="quando-right">
-        <div class="quando-row quando-devices">
-            <span class="quando-info" title="This block can only be dragged into When Display.">⚠</span>
-            📟 When
-            <span class="iconify">
-                µbit
-            </span>
-            <select data-quando-name="button_pin">
-                <option value='a'>🅰</option>
-                <option value='b'>🅱</option>
-                <option value='pin0'>Pin 0</option>
-                <option value='pin1'>Pin 1</option>
-                <option value='pin2'>Pin 2</option>
-            </select>
-            <select data-quando-name="down_up">
-                <option value='down'>press</option>
-                <option value='up'>release</option>
-                <option value='change'>⇕</option>
-            </select>
-            <span data-quando-toggle='down_up=change'>⚡
-            </span>
-        </div>
-        <div data-quando-name="box" class="quando-box"></div>
-        <div class="quando-row quando-devices"></div>
-    </div>
-</div>
-
-
-<div data-quando-block-type="devices-ubit-direction" class="quando-block" data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group"
-    data-quando-javascript="quando.ubit.handleDirection('${direction}','${change}',($(eq$,${change}$,change$,val)$)=>{${box}})">
-    <div class="quando-left quando-devices"></div>
-    <div class="quando-right">
-        <div class="quando-row quando-devices">
-            <span class="quando-info" title="This block can only be dragged into When Display.">⚠</span>
-            📟 When
-            <span class="iconify">
-                µbit
-            </span>
-            changes
-            <select data-quando-name="change">
-                <option value='down'>to</option>
-                <option value='up'>from</option>
-                <option value='change'>to/from</option>
-            </select>
-            <select data-quando-name="direction">
-                <option value='up'>⇧Up</option>
-                <option value='down'>⇩Down</option>
-                <option value='left'>⇦Left</option>
-                <option value='right'>⇨Right</option>
-                <option value='forward'>⬀Forward</option>
-                <option value='backward'>⬃Backward</option>
-            </select>
-            <span data-quando-toggle='change=change'>⚡
-            </span>
-        </div>
-        <div data-quando-name="box" class="quando-box"></div>
-        <div class="quando-row quando-devices"></div>
-    </div>
-</div>
-
-
-<div data-quando-block-type="devices-ubit-angle" class="quando-block" data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group"
-    data-quando-javascript="quando.ubit.handle${angle}(${mid_degrees}, ${range}, ${inverted}, (val) => {${box}})">
-    <div class="quando-left quando-devices"></div>
-    <div class="quando-right">
-        <div class="quando-row quando-devices">
-            <span class="quando-info" title="This block can only be dragged into When Display.">⚠</span>
-            📟 When <span class='iconify'>µbit</span> angle
-            <select data-quando-name="angle">
-                <!-- <option value='Heading'>⇔Heading</option> -->
-                <option value='Roll'>⤹⤸Roll</option>
-                <option value='Pitch'>⇕Pitch</option>
-            </select>
-            &nbsp; ⚡
-            <select data-quando-name='extras' class='quando-toggle'>
-                <option value='hidden'>+</option>
-                <option value='show'>-</option>
-            </select>
-            <span data-quando-toggle='extras=show'>
-                <br />
-                <input data-quando-name='mid_degrees' type='number' value='0' placeholder=''
-                    style='width: 4em' min='-180' max='180' data-quando-encode='normal'/>
-                degrees&nbsp; ±
-                <input data-quando-name='range' type='number' value='180' placeholder=''
-                    style='width: 4em' min='0' max='180' data-quando-encode='normal'/>
-                degrees
-                <select data-quando-name='inverted' class='quando-toggle'>
-                    <option value='false'>Normal</option>
-                    <option value='true'>Inverted</option>
-                </select>
-            </span>
-        </div>
-        <div data-quando-name="box" class="quando-box"></div>
-        <div class="quando-row quando-devices"></div>
-    </div>
-</div>
-
-
-<div data-quando-block-type="devices-window-title" class="quando-block" data-quando-id="true"
-  data-quando-drop-valid="display-when-display,advanced-comment,inventor-flip,inventor-function-block,advanced-group"
-  data-quando-javascript="quando.system.whenFocus('${data-quando-id}','${comparison}','${title}',()=>{${box}},()=>{${box2}})">
-  <div class="quando-left quando-devices"></div>
-  <div class="quando-right">
-    <div class="quando-row quando-devices">
-      <span class="quando-info" title="This block can only be dragged into When Display.">⚠</span>
-      💾 When Window title
-      <select data-quando-name="comparison">
-        <option value='contains'>contains</option>
-        <option value='starts'>starts with</option>
-        <option value='ends'>ends with</option>
-        <option value='equals'>equals</option>
-      </select>
-      <input data-quando-name='title' type='text' value='' placeholder='title' data-quando-encode='normal' />
-      <select data-quando-name="extras" class="quando-toggle">
-        <option value="hidden">+</option>
-        <option value="show">-</option>
-      </select>
-    </div>
-    <div data-quando-name="box" class="quando-box"></div>
-    <div class="quando-row quando-devices" data-quando-toggle="extras=show">
-      then when
-      <span class="iconify"> does not </span>
-      <span data-quando-toggle='comparison=contains'>contain</span>
-      <span data-quando-toggle='comparison=starts'>start with</span>
-      <span data-quando-toggle='comparison=ends'>end with</span>
-      <span data-quando-toggle='comparison=equals'>equal</span>
-    </div>
-    <div data-quando-name="box2" class="quando-box" data-quando-toggle="extras=show"></div>
-    <div class="quando-row quando-devices"></div>
-  </div>
 </div>
 
 
@@ -1159,23 +1028,6 @@ data-quando-javascript="quando.mouse_control.move${XY}({val:val, inverted:${inve
         <option value='either'>⇕</option>
       </select>
       <span class='quando-info' title='Only works with user/browser interaction, e.g. Label, key/mouse/gamepad'>⍰</span>
-    </div>
-  </div>
-</div>
-
-
-<div data-quando-block-type="devices-format-action" class="quando-block"
-     data-quando-javascript="quando.key.simulateShortcut({format: '${format}'})">
-  <div class="quando-left quando-devices"></div>
-  <div class="quando-right">
-    <div class="quando-row quando-devices">
-      Format 
-      <select data-quando-name="format" class="quando-format">
-        <option value="bold">Bold</option>
-        <option value="italic">Italic</option>
-        <option value="underline">Underline</option>
-        <option value="strikethrough">Strikethrough</option>
-      </select>
     </div>
   </div>
 </div>

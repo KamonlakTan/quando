@@ -8,14 +8,13 @@
         {
             "name": "Local",
             "type": "go",
-            "buildFlags": "-tags=local",
+            "buildFlags": "-tags='local full'",
             "request": "launch",
             "mode": "debug",
             "program": ".",
             "env": {},
             "args": [
-                "-remote_client"
-                // "-remote_editor"
+                "-remote"
             ]
         },
         {
@@ -28,8 +27,7 @@
             "program": ".",
             "env": {},
             "args": [
-                "-remote_client"
-                // "-remote_editor"
+                "-remote"
             ]
         },
         {

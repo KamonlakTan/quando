@@ -9,11 +9,9 @@ import (
 )
 
 type ipJSON struct {
-	Success      bool   `json:"success"`
-	IP           string `json:"ip"`
-	Local        bool   `json:"local"`
-	RemoteClient bool   `json:"remote_client"`
-	RemoteEditor bool   `json:"remote_editor"`
+	Success bool   `json:"success"`
+	IP      string `json:"ip"`
+	Remote  bool   `json:"remote"`
 }
 
 func PrivateIP() string {
@@ -30,9 +28,7 @@ func PrivateIP() string {
 func HandlePrivateIP(w http.ResponseWriter, req *http.Request) {
 	success := true
 	privateIP := PrivateIP()
-	remoteClient := config.RemoteClient()
-	remoteEditor := config.RemoteEditor()
-	reply, _ := json.Marshal(ipJSON{Success: success, Local: true, IP: privateIP,
-		RemoteClient: remoteClient, RemoteEditor: remoteEditor})
+	remote := config.Remote()
+	reply, _ := json.Marshal(ipJSON{Success: success, IP: privateIP, Remote: remote})
 	w.Write(reply)
 }

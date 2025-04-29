@@ -88,3 +88,54 @@ let buttons_parent = null // this is where to drop in new rows/columns
     // restore the original parent
     buttons_parent = original_parent
   }
+
+class ConditionalBlock extends HTMLElement {
+  constructor() {
+    super();
+    const template = document.getElementById('conditional-block');
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.appendChild(template.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    this.evaluateCondition();
+    // Re-evaluate whenever inputs change
+    this.addEventListener('slotchange', () => this.evaluateCondition());
+    this.shadowRoot.querySelector('.comparison')
+      .addEventListener('change', () => this.evaluateCondition());
+  }
+
+  evaluateCondition() {
+    const inputA = this.getSlottedValue('input-a');
+    const comparator = this.shadowRoot.querySelector('.comparison').value;
+    const inputB = this.getSlottedValue('input-b');
+
+    let result = false;
+    switch (comparator) {
+      case 'equals':       result = (inputA === inputB); break;
+      case 'contains':     result = inputA.includes(inputB); break;
+      case 'startsWith':   result = inputA.startsWith(inputB); break;
+      case 'endsWith':     result = inputA.endsWith(inputB); break;
+    }
+
+    // Show/Hide action slots based on result
+    this.toggleSlot('then-action',  result);
+    this.toggleSlot('else-action', !result);
+  }
+
+  getSlottedValue(slotName) {
+    const slot = this.shadowRoot.querySelector(`slot[name="${slotName}"]`);
+    const nodes = slot.assignedElements();
+    if (nodes.length && typeof nodes[0].getAttribute === 'function') {
+      return nodes[0].getAttribute('data-value') || nodes[0].textContent;
+    }
+    return '';
+  }
+
+  toggleSlot(slotName, show) {
+    const slotElem = this.shadowRoot.querySelector(`slot[name="${slotName}"]`);
+    slotElem.style.display = show ? '' : 'none';
+  }
+}
+
+customElements.define('conditional-block', ConditionalBlock);

@@ -13,31 +13,23 @@ function onload() {
         if (port) {
           port = ":" + port
         }
-        let remote_client = res.remote_client
-        let remote_editor = res.remote_editor
-        let editor_url = `${ip}${port}/editor`
-        let client_url = `${ip}${port}/client/setup.html`
-        if (res.local == false) { // remote access 
-          editor_url = document.location + 'editor'
-          client_url = document.location + 'client'
-        }
+        let remote = res.remote
+        let editor_url = `http://${ip}${port}/editor`
+        let client_url = `http://${ip}${port}/client/setup.html`
         let editor_qrcode = document.getElementById('editor_qrcode')
-        if (remote_editor) {
+        let client_qrcode = document.getElementById('client_qrcode')
+        if (remote) {
           new QRCode(editor_qrcode, {
             text: editor_url, width:160, height:160, correctLevel : QRCode.CorrectLevel.L, colorDark : "#000088", colorLight : "#ffffff",
           })
-          editor_qrcode.onclick = () => { window.open('//' + editor_url) }
-        } else {
-          editor_qrcode.innerHTML = "<p>remote editor disabled</p><p>run quando with --remote_editor to enable<p>"
-        }
-        let client_qrcode = document.getElementById('client_qrcode')
-        if (remote_client) {
+          editor_qrcode.onclick = () => { window.open(editor_url) }
           new QRCode(client_qrcode, {
             text: client_url, width:160, height:160, correctLevel : QRCode.CorrectLevel.L, colorDark : "#008800", colorLight : "#ffffff",
           })
-          client_qrcode.onclick = () => { window.open('//' + client_url) }
+          client_qrcode.onclick = () => { window.open(client_url) }
         } else {
-            client_qrcode.innerHTML = "<p>remote client disabled</p><p>run quando with --remote_client to enable<p>"
+          editor_qrcode.innerHTML = "<p>remote editor disabled</p><p>run quando with --remote to enable<p>"
+            client_qrcode.innerHTML = "<p>remote client disabled</p><p>run quando with --remote to enable<p>"
         }
       } else {
         alert(res.message)

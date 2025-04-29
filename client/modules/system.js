@@ -17,6 +17,7 @@ self.handle_message = (data) => {
         if (handler.match.test(title) != handler.match.test(last_title)) {
           // i.e. title match has changed true<>false
           if (handler.match.test(title)) {
+            console.log("£", title)
             handler.callback()
           } else {
             handler.change()
@@ -47,6 +48,18 @@ self.whenFocus = (block_id, comparison, title, callback, fn_change) => {
     delete handlers[block_id]
   })
 }
+
+
+
+/////////////// NEW WHEN APP BLOCK /////////////////////////////
+self.whenApp = (block_id, title, callback, fn_change) => {
+  let match = title + "$"
+  handlers[block_id] = {'match': new RegExp(match), 'callback': callback, 'change': fn_change}
+  destructor.add( () => {
+    delete handlers[block_id]
+  })
+}
+///////////////////////////////////////////////////////////
 
 self.fullScreen = (val) => {
   if (val) {
